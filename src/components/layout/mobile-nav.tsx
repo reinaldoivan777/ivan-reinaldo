@@ -1,5 +1,6 @@
-import { ArrowUpRight, FileText, Menu } from "lucide-react";
+import { FileText, Menu } from "lucide-react";
 import type { SocialLink } from "@/types/portfolio";
+import { SocialIconLink } from "./social-icon-link";
 import { ThemeToggle } from "./theme-toggle";
 
 interface NavItem {
@@ -37,19 +38,14 @@ export function MobileNav({ navItems, socialItems, resumeLink }: MobileNavProps)
         </nav>
 
         {socialItems.length > 0 || resumeLink?.href ? (
-          <div className="mt-5 grid gap-2 border-t border-border pt-5">
-            {socialItems.map((item) => (
-              <a
-                key={item.key}
-                href={item.href ?? "#"}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noreferrer" : undefined}
-                className="inline-flex items-center justify-between rounded-md px-2 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
-              >
-                {item.label}
-                {item.external ? <ArrowUpRight aria-hidden="true" size={16} /> : null}
-              </a>
-            ))}
+          <div className="mt-5 grid gap-3 border-t border-border pt-5">
+            {socialItems.length > 0 ? (
+              <div className="flex flex-wrap gap-2">
+                {socialItems.map((item) => (
+                  <SocialIconLink key={item.key} link={item} />
+                ))}
+              </div>
+            ) : null}
 
             {resumeLink?.href ? (
               <a

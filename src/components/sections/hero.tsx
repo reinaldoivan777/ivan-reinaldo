@@ -1,9 +1,10 @@
 import { ArrowDown, FileText } from "lucide-react";
 import { socialLinks } from "@/data/social";
+import { SocialIconLink } from "@/components/layout/social-icon-link";
 
 const resumeLink = socialLinks.find((link) => link.key === "resume" && link.href);
 const availableSocialLinks = socialLinks.filter(
-  (link) => link.href && link.key !== "resume",
+  (link) => link.href && (link.key === "github" || link.key === "linkedin"),
 );
 
 export function Hero() {
@@ -47,17 +48,9 @@ export function Hero() {
           </div>
 
           {availableSocialLinks.length > 0 ? (
-            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-muted-foreground">
+            <div className="mt-8 flex flex-wrap gap-2 text-sm font-medium text-muted-foreground">
               {availableSocialLinks.map((link) => (
-                <a
-                  key={link.key}
-                  href={link.href ?? "#"}
-                  target={link.external ? "_blank" : undefined}
-                  rel={link.external ? "noreferrer" : undefined}
-                  className="transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </a>
+                <SocialIconLink key={link.key} link={link} />
               ))}
             </div>
           ) : null}

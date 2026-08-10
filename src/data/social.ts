@@ -4,13 +4,13 @@ export const socialLinks: SocialLink[] = [
   {
     key: "github",
     label: "GitHub",
-    href: null,
+    href: "https://github.com/reinaldoivan777",
     external: true,
   },
   {
     key: "linkedin",
     label: "LinkedIn",
-    href: null,
+    href: "https://www.linkedin.com/in/ivan-reinaldo-421b9585/",
     external: true,
   },
   {

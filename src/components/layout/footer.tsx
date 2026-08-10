@@ -1,5 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
 import { socialLinks } from "@/data/social";
+import { SocialIconLink } from "./social-icon-link";
 
 const footerLinks = socialLinks.filter((link) => link.href);
 
@@ -21,20 +21,11 @@ export function Footer() {
         <div className="flex flex-col gap-4 sm:items-end">
           {footerLinks.length > 0 ? (
             <nav
-              className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-muted-foreground"
+              className="flex flex-wrap gap-2 text-sm font-medium text-muted-foreground"
               aria-label="Footer navigation"
             >
               {footerLinks.map((link) => (
-                <a
-                  key={link.key}
-                  href={link.href ?? "#"}
-                  target={link.external ? "_blank" : undefined}
-                  rel={link.external ? "noreferrer" : undefined}
-                  className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                  {link.external ? <ArrowUpRight aria-hidden="true" size={14} /> : null}
-                </a>
+                <SocialIconLink key={link.key} link={link} />
               ))}
             </nav>
           ) : null}

@@ -1,7 +1,11 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { socialLinks } from "@/data/social";
+import { SocialIconLink } from "@/components/layout/social-icon-link";
 
-const contactLinks = socialLinks.filter((link) => link.href);
+const emailLink = socialLinks.find((link) => link.key === "email" && link.href);
+const socialContactLinks = socialLinks.filter(
+  (link) => link.href && (link.key === "github" || link.key === "linkedin"),
+);
 
 export function Contact() {
   return (
@@ -28,21 +32,17 @@ export function Contact() {
             </p>
           </div>
 
-          {contactLinks.length > 0 ? (
+          {emailLink || socialContactLinks.length > 0 ? (
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              {contactLinks.map((link) => (
+              {emailLink ? (
                 <a
-                  key={link.key}
-                  href={link.href ?? "#"}
-                  target={link.external ? "_blank" : undefined}
-                  rel={link.external ? "noreferrer" : undefined}
+                  href={emailLink.href ?? "#"}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-surface px-4 text-sm font-medium text-foreground shadow-soft transition-colors hover:border-border-strong hover:bg-surface-muted"
                 >
-                  {link.key === "email" ? <Mail aria-hidden="true" size={16} /> : null}
-                  {link.key === "email" ? "Contact Me" : link.label}
-                  {link.external ? <ArrowUpRight aria-hidden="true" size={16} /> : null}
+                  <Mail aria-hidden="true" size={16} />
+                  Contact Me
                 </a>
-              ))}
+              ) : null}
             </div>
           ) : null}
         </div>

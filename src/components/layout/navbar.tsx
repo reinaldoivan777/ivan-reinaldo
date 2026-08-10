@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowUpRight, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { socialLinks } from "@/data/social";
 import { MobileNav } from "./mobile-nav";
+import { SocialIconLink } from "./social-icon-link";
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
@@ -51,16 +52,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-4 md:flex">
           {socialNavItems.map((item) => (
-            <a
-              key={item.key}
-              href={item.href ?? "#"}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noreferrer" : undefined}
-              className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.label}
-              {item.external ? <ArrowUpRight aria-hidden="true" size={14} /> : null}
-            </a>
+            <SocialIconLink key={item.key} link={item} />
           ))}
 
           {resumeLink?.href ? (
