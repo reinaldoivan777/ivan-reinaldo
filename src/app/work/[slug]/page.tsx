@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ArchitectureDiagram } from "@/components/diagrams/architecture-diagram";
 import { EngineeringChallenge } from "@/components/project/engineering-challenge";
 import { EngineeringDecision } from "@/components/project/engineering-decision";
 import { ProjectHeader } from "@/components/project/project-header";
@@ -193,30 +194,62 @@ function PaymentPlatformCaseStudy({ project }: CaseStudyProps) {
                   events drive the final state transition.
                 </p>
 
-                <div className="grid gap-3 rounded-md border border-border bg-surface p-5">
-                  {[
-                    "Client",
-                    "API",
-                    "Payment Service",
-                    "Payment Provider",
-                    "Webhook",
-                    "Transaction Processor",
-                    "PostgreSQL + Redis",
-                    "SSE",
-                    "Client",
-                  ].map((node, index, nodes) => (
-                    <div key={`${node}-${index}`}>
-                      <div className="rounded-md border border-border bg-background px-4 py-3 font-mono text-sm text-foreground">
-                        {node}
-                      </div>
-                      {index < nodes.length - 1 ? (
-                        <div className="py-2 text-center font-mono text-xs text-muted">
-                          ↓
-                        </div>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
+                <ArchitectureDiagram
+                  title="Payment transaction flow"
+                  nodes={[
+                    {
+                      id: "client",
+                      label: "Client",
+                      type: "client",
+                      description: "Customer or merchant-facing application.",
+                      connectionLabel: "request",
+                    },
+                    {
+                      id: "api",
+                      label: "API",
+                      type: "service",
+                      description: "Receives payment initiation requests.",
+                      connectionLabel: "create",
+                    },
+                    {
+                      id: "payment-service",
+                      label: "Payment Service",
+                      type: "service",
+                      description: "Creates and validates transaction records.",
+                      connectionLabel: "charge",
+                    },
+                    {
+                      id: "provider",
+                      label: "Payment Provider",
+                      type: "external",
+                      description: "Processes payment asynchronously.",
+                      connectionLabel: "webhook",
+                    },
+                    {
+                      id: "processor",
+                      label: "Transaction Processor",
+                      type: "worker",
+                      description:
+                        "Verifies webhook events and applies state transitions.",
+                    },
+                  ]}
+                  storageNodes={[
+                    {
+                      id: "postgresql",
+                      label: "PostgreSQL",
+                      type: "database",
+                      description:
+                        "Stores transaction records and status history.",
+                    },
+                    {
+                      id: "redis",
+                      label: "Redis",
+                      type: "cache",
+                      description:
+                        "Coordinates short-lived status updates and realtime delivery.",
+                    },
+                  ]}
+                />
               </div>
             </CaseSection>
 
