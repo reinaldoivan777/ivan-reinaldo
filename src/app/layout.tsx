@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { socialLinks } from "@/data/social";
+import { absoluteUrl, siteMetadata } from "@/lib/metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,13 +25,41 @@ try {
 } catch (_) {}
 `;
 
+const sameAsLinks = socialLinks
+  .filter((link) => link.href?.startsWith("https://"))
+  .map((link) => link.href);
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteMetadata.name,
+  url: siteMetadata.url,
+  email: siteMetadata.email,
+  jobTitle: "Full-Stack Software Engineer",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Jakarta",
+    addressCountry: "ID",
+  },
+  knowsAbout: [
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Backend Systems",
+    "Payment Systems",
+    "API Architecture",
+  ],
+  ...(sameAsLinks.length > 0 ? { sameAs: sameAsLinks } : {}),
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteMetadata.url),
   title: {
-    default: "Ivan Reinaldo — Full-Stack Software Engineer",
+    default: siteMetadata.title,
     template: "%s | Ivan Reinaldo",
   },
-  description:
-    "Full-Stack Software Engineer specializing in TypeScript, React, Next.js, Node.js and production backend systems.",
+  description: siteMetadata.description,
   applicationName: "Ivan Reinaldo Portfolio",
   authors: [{ name: "Ivan Reinaldo" }],
   creator: "Ivan Reinaldo",
@@ -46,19 +76,21 @@ export const metadata: Metadata = {
     "Fintech",
     "Payments",
   ],
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Ivan Reinaldo — Full-Stack Software Engineer",
-    description:
-      "Full-Stack Software Engineer specializing in TypeScript, React, Next.js, Node.js and production backend systems.",
+    url: absoluteUrl("/"),
+    title: siteMetadata.title,
+    description: siteMetadata.description,
     siteName: "Ivan Reinaldo Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ivan Reinaldo — Full-Stack Software Engineer",
-    description:
-      "Full-Stack Software Engineer specializing in TypeScript, React, Next.js, Node.js and production backend systems.",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
   },
   robots: {
     index: true,
@@ -79,6 +111,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <a

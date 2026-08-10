@@ -6,6 +6,7 @@ import { EngineeringDecision } from "@/components/project/engineering-decision";
 import { ProjectHeader } from "@/components/project/project-header";
 import { Tradeoff } from "@/components/project/tradeoff";
 import { getProjectBySlug, projects } from "@/data/projects";
+import { absoluteUrl } from "@/lib/metadata";
 
 interface WorkPageProps {
   params: Promise<{
@@ -36,10 +37,14 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.description,
+    alternates: {
+      canonical: absoluteUrl(`/work/${project.slug}`),
+    },
     openGraph: {
       title: `${project.title} | Ivan Reinaldo`,
       description: project.description,
       type: "article",
+      url: absoluteUrl(`/work/${project.slug}`),
     },
     twitter: {
       card: "summary_large_image",
