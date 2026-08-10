@@ -30,7 +30,7 @@ export function Hero() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
               href="#work"
-              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-muted-foreground sm:w-auto"
+              className="hero-primary-cta inline-flex h-11 w-full items-center justify-center gap-2 rounded-md px-4 text-sm font-semibold shadow-soft transition-colors sm:w-auto"
             >
               View My Work
               <ArrowDown aria-hidden="true" size={16} />

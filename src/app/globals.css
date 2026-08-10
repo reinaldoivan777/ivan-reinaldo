@@ -15,6 +15,8 @@
   --accent: #0f766e;
   --accent-foreground: #ffffff;
   --accent-muted: #ccfbf1;
+  --action: #0f172a;
+  --action-foreground: #ffffff;
   --danger: #b91c1c;
   --ring: #0f766e;
   --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.06);
@@ -34,6 +36,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-muted: var(--accent-muted);
+  --color-action: var(--action);
+  --color-action-foreground: var(--action-foreground);
   --color-danger: var(--danger);
   --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
@@ -57,6 +61,8 @@
     --accent: #2dd4bf;
     --accent-foreground: #042f2e;
     --accent-muted: #134e4a;
+    --action: #f4f4f5;
+    --action-foreground: #09090b;
     --danger: #f87171;
     --ring: #2dd4bf;
     --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.35);
@@ -78,6 +84,8 @@
   --accent: #0f766e;
   --accent-foreground: #ffffff;
   --accent-muted: #ccfbf1;
+  --action: #0f172a;
+  --action-foreground: #ffffff;
   --danger: #b91c1c;
   --ring: #0f766e;
   --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.06);
@@ -98,6 +106,8 @@
   --accent: #2dd4bf;
   --accent-foreground: #042f2e;
   --accent-muted: #134e4a;
+  --action: #f4f4f5;
+  --action-foreground: #09090b;
   --danger: #f87171;
   --ring: #2dd4bf;
   --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.35);
@@ -142,6 +152,44 @@ select {
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 3px;
+}
+
+.hero-primary-cta {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.hero-primary-cta:hover {
+  background: #0f766e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .hero-primary-cta {
+    background: #2dd4bf;
+    color: #111113;
+  }
+
+  :root:not([data-theme]) .hero-primary-cta:hover {
+    background: #2dd4bf;
+  }
+}
+
+:root[data-theme="light"] .hero-primary-cta {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .hero-primary-cta:hover {
+  background: #2dd4bf;
+}
+
+:root[data-theme="dark"] .hero-primary-cta {
+  background: #2dd4bf;
+  color: #111113;
+}
+
+:root[data-theme="dark"] .hero-primary-cta:hover {
+  background: #2dd4bf;
 }
 
 @media (prefers-reduced-motion: reduce) {
