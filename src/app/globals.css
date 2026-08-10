@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --surface-elevated: #ffffff;
+  --border: #d9e2ec;
+  --border-strong: #a8b3c2;
+  --muted: #64748b;
+  --muted-foreground: #475569;
+  --accent: #0f766e;
+  --accent-foreground: #ffffff;
+  --accent-muted: #ccfbf1;
+  --danger: #b91c1c;
+  --ring: #0f766e;
+  --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.06);
+  --container-inline: clamp(1rem, 4vw, 2rem);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-muted: var(--accent-muted);
+  --color-danger: var(--danger);
+  --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --shadow-soft: var(--shadow-soft);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: dark;
+
+    --background: #09090b;
+    --foreground: #f4f4f5;
+    --surface: #111113;
+    --surface-muted: #18181b;
+    --surface-elevated: #1f1f23;
+    --border: #27272a;
+    --border-strong: #3f3f46;
+    --muted: #a1a1aa;
+    --muted-foreground: #d4d4d8;
+    --accent: #2dd4bf;
+    --accent-foreground: #042f2e;
+    --accent-muted: #134e4a;
+    --danger: #f87171;
+    --ring: #2dd4bf;
+    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.35);
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+}
+
+::selection {
+  background: var(--accent-muted);
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
