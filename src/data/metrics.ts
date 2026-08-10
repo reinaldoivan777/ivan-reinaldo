@@ -1,6 +1,6 @@
 import type { Metric } from "@/types/portfolio";
 
-export const metrics = [
+export const metrics: Metric[] = [
   {
     value: "6+",
     label: "Years Engineering",
@@ -17,4 +17,4 @@ export const metrics = [
     value: "Fintech",
     label: "Experience",
   },
-] satisfies Metric[];
+];
