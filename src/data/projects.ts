@@ -52,6 +52,32 @@ export const projects = [
         result:
           "Duplicate provider events do not create duplicate payment processing behavior.",
       },
+      {
+        title: "Keeping Transaction State Predictable",
+        problem:
+          "A transaction can move through multiple asynchronous states while the customer, merchant, provider, and internal services all need a consistent view.",
+        decision:
+          "Model transaction updates as controlled state transitions instead of ad hoc status writes.",
+        implementation:
+          "Validate each incoming event against the current transaction state before persisting the next state and publishing updates.",
+        tradeoff:
+          "State transition rules require more upfront design, but they make invalid payment states easier to prevent and debug.",
+        result:
+          "The backend can reject invalid transitions and keep payment status changes auditable.",
+      },
+      {
+        title: "Delivering Real-time Payment Feedback",
+        problem:
+          "Customers and merchant dashboards need payment status feedback after the initial request returns, because provider confirmation arrives asynchronously.",
+        decision:
+          "Push server-to-client transaction updates instead of relying only on manual refresh or polling.",
+        implementation:
+          "Coordinate payment status changes through backend processing and publish one-way updates to connected clients.",
+        tradeoff:
+          "Real-time updates add connection lifecycle handling, but improve the payment experience during pending states.",
+        result:
+          "Users can receive status changes as the backend reconciles provider events.",
+      },
     ],
     decisions: [
       {
@@ -74,6 +100,28 @@ export const projects = [
           "Redis supports low-latency reads and transient state without overloading the primary database.",
         tradeoff:
           "Cached state must be invalidated carefully to avoid stale payment status displays.",
+      },
+      {
+        title: "How transaction transitions are controlled",
+        context:
+          "Payment status updates may arrive from different parts of the flow and not always in a perfectly linear order.",
+        decision:
+          "Treat transaction status as a state machine with explicit allowed transitions.",
+        rationale:
+          "A constrained transition model reduces accidental overwrites and makes edge cases such as retries, expiry, and duplicate callbacks easier to reason about.",
+        tradeoff:
+          "The model needs to be updated whenever the payment lifecycle changes.",
+      },
+      {
+        title: "How webhook verification fits the flow",
+        context:
+          "Provider callbacks affect financial transaction state and must not be accepted blindly.",
+        decision:
+          "Verify webhook authenticity before applying provider events to internal transaction records.",
+        rationale:
+          "Verification protects the backend from forged callbacks and makes provider-originated state changes trustworthy.",
+        tradeoff:
+          "Verification adds operational dependency on provider-specific signing and timestamp rules.",
       },
     ],
     tradeoffs: [
