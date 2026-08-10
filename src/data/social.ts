@@ -1,6 +1,6 @@
 import type { SocialLink } from "@/types/portfolio";
 
-export const socialLinks = [
+export const socialLinks: SocialLink[] = [
   {
     key: "github",
     label: "GitHub",
@@ -16,11 +16,11 @@ export const socialLinks = [
   {
     key: "email",
     label: "Email",
-    href: null,
+    href: "mailto:reinaldoivan777@gmail.com",
   },
   {
     key: "resume",
     label: "Resume",
     href: null,
   },
-] satisfies SocialLink[];
+];
