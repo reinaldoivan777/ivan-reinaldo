@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, FileText } from "lucide-react";
 import { socialLinks } from "@/data/social";
 import { MobileNav } from "./mobile-nav";
+import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
   { label: "Work", href: "#work" },
@@ -71,6 +72,8 @@ export function Navbar() {
               Resume
             </a>
           ) : null}
+
+          <ThemeToggle />
         </div>
 
         <MobileNav navItems={navItems} socialItems={socialNavItems} resumeLink={resumeLink} />

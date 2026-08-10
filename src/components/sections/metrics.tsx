@@ -8,9 +8,12 @@ export function Metrics() {
           Engineering metrics
         </h2>
 
-        <div className="grid grid-cols-2 divide-x divide-y divide-border border border-border bg-background sm:grid-cols-4 sm:divide-y-0">
+        <div className="grid grid-cols-1 overflow-hidden border border-border bg-background min-[360px]:grid-cols-2 sm:grid-cols-4">
           {metrics.map((metric) => (
-            <div key={`${metric.value}-${metric.label}`} className="min-h-28 p-5">
+            <div
+              key={`${metric.value}-${metric.label}`}
+              className="min-h-28 border-b border-border p-5 min-[360px]:border-r sm:border-b-0 last:border-b-0 min-[360px]:even:border-r-0 sm:even:border-r sm:last:border-r-0"
+            >
               <p className="font-mono text-sm font-semibold text-foreground">
                 {metric.value}
               </p>

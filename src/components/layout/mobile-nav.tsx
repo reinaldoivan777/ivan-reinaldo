@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRight, FileText, Menu, X } from "lucide-react";
 import type { SocialLink } from "@/types/portfolio";
+import { ThemeToggle } from "./theme-toggle";
 
 interface NavItem {
   label: string;
@@ -83,6 +84,11 @@ export function MobileNav({ navItems, socialItems, resumeLink }: MobileNavProps)
               ) : null}
             </div>
           ) : null}
+
+          <div className="mt-5 flex items-center justify-between border-t border-border pt-5">
+            <span className="font-mono text-xs uppercase text-muted">Theme</span>
+            <ThemeToggle />
+          </div>
         </div>
       ) : null}
     </div>

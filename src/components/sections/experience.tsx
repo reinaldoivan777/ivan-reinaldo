@@ -39,8 +39,8 @@ export function Experience() {
                     aria-hidden="true"
                   />
 
-                  <div className="grid gap-2 sm:grid-cols-[9rem_minmax(0,1fr)]">
-                    <p className="font-mono text-sm text-muted">{item.period}</p>
+                  <div className="grid gap-2 sm:grid-cols-[10rem_minmax(0,1fr)]">
+                    <p className="font-mono text-sm leading-6 text-muted">{item.period}</p>
                     <div>
                       <h3 className="text-xl font-semibold leading-snug text-foreground">
                         {item.title}
@@ -51,11 +51,11 @@ export function Experience() {
                     </div>
                   </div>
 
-                  <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:ml-36">
+                  <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:ml-40">
                     {item.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 sm:ml-36">
+                  <div className="flex flex-wrap gap-2 sm:ml-40">
                     {item.technologies.map((technology) => (
                       <span
                         key={technology}

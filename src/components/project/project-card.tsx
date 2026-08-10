@@ -10,12 +10,12 @@ interface ProjectCardProps {
 export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <article className="group grid gap-8 border-t border-border py-10 first:border-t-0 md:grid-cols-[7rem_minmax(0,1fr)] md:py-12">
-      <div className="flex items-center justify-between md:block">
+      <div className="flex flex-wrap items-center justify-between gap-3 md:block">
         <p className="font-mono text-sm text-muted">
           {String(index + 1).padStart(2, "0")}
         </p>
         {project.status ? (
-          <p className="mt-0 font-mono text-xs uppercase text-muted md:mt-5">
+          <p className="mt-0 font-mono text-xs uppercase leading-5 text-muted md:mt-5">
             {project.status}
           </p>
         ) : null}
@@ -23,7 +23,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div>
-          <p className="font-mono text-xs font-medium uppercase text-accent">
+          <p className="font-mono text-xs font-medium uppercase leading-5 text-accent">
             {project.category}
           </p>
           <h3 className="mt-3 text-2xl font-semibold leading-tight text-foreground sm:text-3xl">
