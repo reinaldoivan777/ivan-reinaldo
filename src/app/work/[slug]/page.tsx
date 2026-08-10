@@ -118,7 +118,10 @@ export default async function WorkPage({ params }: WorkPageProps) {
               <ul className="mt-5 grid gap-3 text-base leading-7 text-muted-foreground sm:grid-cols-2">
                 {project.highlights.map((highlight) => (
                   <li key={highlight} className="flex gap-3">
-                    <span className="mt-3 size-1.5 shrink-0 rounded-full bg-accent" />
+                    <span
+                      className="mt-3 size-1.5 shrink-0 rounded-full bg-accent"
+                      aria-hidden="true"
+                    />
                     <span>{highlight}</span>
                   </li>
                 ))}

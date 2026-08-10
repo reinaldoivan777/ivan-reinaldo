@@ -92,7 +92,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <ul className="mt-3 grid gap-2 text-sm leading-6 text-muted-foreground">
               {project.highlights.map((highlight) => (
                 <li key={highlight} className="flex gap-2">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
+                  <span
+                    className="mt-2 size-1.5 shrink-0 rounded-full bg-accent"
+                    aria-hidden="true"
+                  />
                   <span>{highlight}</span>
                 </li>
               ))}

@@ -5,10 +5,10 @@ import { MobileNav } from "./mobile-nav";
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
-  { label: "Work", href: "#work" },
-  { label: "Experience", href: "#experience" },
-  { label: "Engineering", href: "#engineering" },
-  { label: "About", href: "#about" },
+  { label: "Work", href: "/#work" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Engineering", href: "/#engineering" },
+  { label: "About", href: "/#about" },
 ] as const;
 
 const socialNavItems = socialLinks.filter(

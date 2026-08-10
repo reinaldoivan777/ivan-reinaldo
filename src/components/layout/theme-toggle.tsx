@@ -60,6 +60,7 @@ export function ThemeToggle() {
     <div
       className="inline-flex rounded-md border border-border bg-surface p-1 shadow-soft"
       aria-label="Theme preference"
+      role="group"
     >
       {themeOptions.map((option) => {
         const Icon = option.icon;

@@ -15,7 +15,10 @@ export function Tradeoff({ tradeoff }: TradeoffProps) {
         <ul className="mt-3 grid gap-2 text-sm leading-6 text-muted-foreground">
           {tradeoff.advantages.map((advantage) => (
             <li key={advantage} className="flex gap-3">
-              <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
+              <span
+                className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent"
+                aria-hidden="true"
+              />
               <span>{advantage}</span>
             </li>
           ))}
